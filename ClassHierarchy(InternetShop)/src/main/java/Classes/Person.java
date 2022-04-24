@@ -2,7 +2,7 @@ package Classes;
 
 import Exceptions.WarehouseException;
 
-abstract public class Person {
+public abstract class Person {
 
     protected String name;
     protected String phoneNumber;

@@ -3,6 +3,7 @@ package Classes;
 import Exceptions.SecurityException;
 import Interfaces.IGreet;
 import Interfaces.IKickOut;
+import Interfaces.ISalaryCount;
 import org.apache.log4j.Logger;
 
 public final class Security extends Employee implements IGreet, IKickOut {
@@ -52,4 +53,12 @@ public final class Security extends Employee implements IGreet, IKickOut {
     public void kickOut() {
         LOGGER.info(name + ": " + "Get out of here!");
     }
+
+    ISalaryCount calculateSalary = (experience) -> 1500 * experience;
+
+    public void lambdaReturn() {
+        int result = calculateSalary.calculateSalary(experience);
+        LOGGER.info("Salary of "+name+": "+result);
+    }
+
 }

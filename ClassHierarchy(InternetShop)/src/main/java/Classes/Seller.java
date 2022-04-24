@@ -1,18 +1,19 @@
 package Classes;
 
 import Interfaces.IGreet;
+import Interfaces.ISalaryCount;
 import org.apache.log4j.Logger;
 
 public final class Seller extends Employee implements IGreet {
 
     private static  final Logger LOGGER = Logger.getLogger(Seller.class);
 
-    private String experience;
+    private Integer experience;
 
     Seller() {
     }
 
-    public Seller(String name, String phoneNumber, String experience, String position, String gender) {
+    public Seller(String name, String phoneNumber, Integer experience, String position, String gender) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.experience = experience;
@@ -24,7 +25,7 @@ public final class Seller extends Employee implements IGreet {
         this.experience = experience;
     }
 
-    public String getExperience() {
+    public Integer getExperience() {
         return experience;
     }
 
@@ -42,4 +43,12 @@ public final class Seller extends Employee implements IGreet {
     public void sayGreet() {
         LOGGER.info(name + ": " + "Good afternoon!");
     }
+
+    ISalaryCount calculateSalary = (experience) -> 1500 * experience;
+
+    public void lambdaReturn() {
+        int result = calculateSalary.calculateSalary(experience);
+        LOGGER.info("Salary of "+name+": "+result);
+    }
+
 }

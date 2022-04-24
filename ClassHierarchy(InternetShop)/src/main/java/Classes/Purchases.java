@@ -1,5 +1,8 @@
 package Classes;
 
+import Enums.SizeChart;
+import Enums.TypeOfProduct;
+
 public class Purchases extends Product {
 
     protected Integer dateOfPurchase;
@@ -8,10 +11,10 @@ public class Purchases extends Product {
     Purchases() {
     }
 
-    public Purchases(String type, String color, String size, Integer dateOfPurchase, Integer quantity, Integer price) {
-        this.type = type;
+    public Purchases(TypeOfProduct typeProduct, String color, SizeChart sizeProduct, Integer dateOfPurchase, Integer quantity, Integer price) {
+        this.typeProduct = typeProduct;
         this.color = color;
-        this.size = size;
+        this.sizeProduct = sizeProduct;
         this.dateOfPurchase = dateOfPurchase;
         this.quantity = quantity;
         this.price = price;
@@ -36,9 +39,9 @@ public class Purchases extends Product {
     @Override
     public String toString() {
         return "Check" +
-                "\nType: " + type +
+                "\nType: " + typeProduct +
                 "\nColor: " + color +
-                "\nSize: " + size +
+                "\nSize: " + sizeProduct +
                 "\nDate of purchase: " + dateOfPurchase +
                 "\nQuantity: " + quantity +
                 "\nPrice: " + price;

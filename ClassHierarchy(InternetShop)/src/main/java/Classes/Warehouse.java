@@ -1,12 +1,14 @@
 package Classes;
 
 import Exceptions.WarehouseException;
-import Interfaces.IActionArrayList;
+import Interfaces.IArrayListAction;
 
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
-public class Warehouse implements IActionArrayList {
+import static org.apache.commons.lang3.RandomUtils.nextInt;
+
+public class Warehouse extends Product implements IArrayListAction {
 
     private static  final Logger LOGGER = Logger.getLogger(Warehouse.class);
 
@@ -29,18 +31,30 @@ public class Warehouse implements IActionArrayList {
         return name;
     }
 
+    @Override
     public void addToWarehouse(String item) throws WarehouseException {
-        if (item.equals("")) {
-            throw new WarehouseException("Cannot be empty name!");
+        if (item.isEmpty()) {
+            try {
+                throw new WarehouseException("Cannot be empty name!");
+            } catch (WarehouseException e) {
+                e.printStackTrace();
+                LOGGER.error(e.getMessage());
+            }
         } else {
             products.add(item);
             LOGGER.info("Added element: " + item);
         }
     }
 
+    @Override
     public void deleteLastFromWarehouse(String item) throws WarehouseException {
-        if (item.equals("")) {
-            throw new WarehouseException("Dont have element to delete!");
+        if (item.isEmpty()) {
+            try {
+                throw new WarehouseException("Dont have element to delete!");
+            } catch (WarehouseException e) {
+                e.printStackTrace();
+                LOGGER.error(e.getMessage());
+            }
         } else {
             products.remove(item);
             LOGGER.info("Deleted element: " + item);
@@ -49,13 +63,26 @@ public class Warehouse implements IActionArrayList {
 
     @Override
     public String toString() {
-        return "Classes.Warehouse" +
+        return "Warehouse" +
                 "\nItems: " + products;
     }
 
     @Override
     public void removeAll() {
         products.clear();
+    }
+
+    @Override
+    public void makeRandomDiscount() {
+        int discountSize = nextInt(1, 10);
+         LOGGER.info("Your random discount is: " + discountSize + "%");
+         if (discountSize >= 7) {
+             LOGGER.info("You are very lucky!");
+         } else if (discountSize > 3 || discountSize < 6) {
+             LOGGER.info("Good for you!");
+         } else if (discountSize <= 2) {
+             LOGGER.info("You will get lucky next time!");
+         }
     }
 
     @Override

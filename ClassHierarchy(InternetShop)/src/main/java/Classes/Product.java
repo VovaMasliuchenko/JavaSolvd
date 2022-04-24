@@ -1,48 +1,43 @@
 package Classes;
 
+import Enums.SizeChart;
+import Enums.TypeOfProduct;
+
 public abstract class Product {
 
-    protected String type;
     protected String color;
-    protected String size;
     protected Integer price;
+    protected TypeOfProduct typeProduct;
+    protected SizeChart sizeProduct;
 
     Product() {
     }
 
-    Product(String type, String color, String size, Integer price) {
-        this.type = type;
+    public Product(TypeOfProduct typeProduct, String color, SizeChart sizeProduct, Integer price) {
+        this.typeProduct = typeProduct;
         this.color = color;
-        this.size = size;
+        this.sizeProduct = sizeProduct;
         this.price = price;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public void setColor(String color) {
         this.color = color;
     }
 
-    public void setSize(String size) {
-        this.size = size;
-    }
-
     public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public String getType() {
-        return type;
+    public TypeOfProduct getType() {
+        return typeProduct;
     }
 
     public String getColor() {
         return color;
     }
 
-    public String getSize() {
-        return size;
+    public SizeChart getSize() {
+        return sizeProduct;
     }
 
     public Integer getPrice() {
@@ -52,9 +47,9 @@ public abstract class Product {
     @Override
     public String toString() {
         return "Classes.Product" +
-                "\nType: " + type +
+                "\nType: " + typeProduct +
                 "\nColor: " + color +
-                "\nSize: " + size +
+                "\nSize: " + sizeProduct +
                 "\nPrice: " + price;
     }
 }
